@@ -106,7 +106,7 @@ Example output stored in DynamoDB:
 
 #### ☁️ Amazon S3
 - Uploaded user data (`ecommerce_users.json`) preview:
-  ![S3 File](screenshots/s3/s3_file_preview.png)
+  ![S3 File](screenshots/screenshots/S3/s3_file_preview.png)
 
 #### 🔐 IAM Role Configuration
 - IAM Role for Step Function:
