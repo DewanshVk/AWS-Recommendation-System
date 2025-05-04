@@ -1,0 +1,52 @@
+{
+    "Comment": "Serverless Recommendation Pipeline",
+    "StartAt": "ImportUsersFromS3",
+    "States": {
+      "ImportUsersFromS3": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:ap-south-1:985852611036:function:ImportUsersFromS3",
+        "Parameters": {
+          "userId.$": "$.userId"
+        },
+        "ResultSelector": {
+          "statusCode.$": "$.statusCode",
+          "body.$": "$.body",
+          "userId.$": "$.userId"
+        },
+        "ResultPath": "$.importResult",
+        "Next": "MockRecommendations"
+      },
+      "MockRecommendations": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:ap-south-1:985852611036:function:MockRecommendations",
+        "Parameters": {
+          "userId.$": "$.userId"
+        },
+        "ResultPath": "$.mockRecommendationResult",
+        "Next": "FetchRecommendations"
+      },
+      "FetchRecommendations": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:ap-south-1:985852611036:function:getPersonalizedRecommendations",
+        "Parameters": {
+          "userId.$": "$.userId"
+        },
+        "ResultPath": "$.recommendationResult",
+        "Next": "StoreToDynamoDB"
+      },
+      "StoreToDynamoDB": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:ap-south-1:985852611036:function:storeRecommendations",
+        "Parameters": {
+          "userId.$": "$.recommendationResult.userId",
+          "recommendations.$": "$.recommendationResult.recommendations"
+        },
+        "Next": "NotifyCompletion"
+      },
+      "NotifyCompletion": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:ap-south-1:985852611036:function:NotifyCompletion",
+        "End": true
+      }
+    }
+  }
