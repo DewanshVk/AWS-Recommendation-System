@@ -114,7 +114,7 @@ Example output stored in DynamoDB:
   ![StepFunction IAM](screenshots/iam/step_function_iam_role.png)
 
 - IAM Role for Lambda functions:
-  ![Lambda IAM](screenshots/iam/lambda_execution_role.png)
+  ![Lambda IAM](screenshots/iam/ambda_execution_role.png)
 
 ---	
 
