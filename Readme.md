@@ -95,6 +95,7 @@ Example output stored in DynamoDB:
 
 #### 🧠 Lambda Functions
 - All deployed Lambda functions:
+- 
   ![Lambda List](screenshots/lambda/all_lambda_functions.png)
 
 #### 🗃️ DynamoDB Tables
@@ -106,7 +107,7 @@ Example output stored in DynamoDB:
 
 #### ☁️ Amazon S3
 - Uploaded user data (`ecommerce_users.json`) preview:
-  ![S3 File](screenshots/screenshots/S3/s3_file_preview.png)
+  ![S3 File](screenshots/S3/s3_file_preview.png)
 
 #### 🔐 IAM Role Configuration
 - IAM Role for Step Function:
